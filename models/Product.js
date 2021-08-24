@@ -9,7 +9,7 @@ const productSchema = mongoose.Schema({
     brand: { type: String, required: true },
     features: { type: String, required: true },
     state: { type: String, required: true },
-    image: { type: binary, required: true },
+    imageUrl: { type: String, required: true },
     price: { type: Number, required: true },
     stock: { type: Number, required: true },
     sellerId: { type: String, required: true },
