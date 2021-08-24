@@ -12,7 +12,7 @@ const productSchema = mongoose.Schema({
     image: { type: binary, required: true },
     price: { type: Number, required: true },
     stock: { type: Number, required: true },
-    seller : { type: Seller, required: true },
+    sellerId: { type: String, required: true },
     category : { type: ProductCategory, required: true },
     warehouse : { type: Warehouse },
 });

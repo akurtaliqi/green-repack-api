@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/User')
 
+// TODO: duplicate for buyer/seller
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
@@ -17,6 +18,7 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 
+// TODO: duplicate for buyer/seller
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
       .then(user => {
