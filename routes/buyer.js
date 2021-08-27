@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-const userCtrl = require('../controllers/buyer');
+const buyerController = require('../controllers/buyer');
 
-router.post('/signup', userCtrl.signup);
-router.post('/login', userCtrl.login);
+router.post('/signup', buyerController.signup);
+router.post('/login', buyerController.login);
+router.get('/:id', buyerController.getOneBuyer);
 
 module.exports = router;

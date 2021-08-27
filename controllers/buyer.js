@@ -41,3 +41,19 @@ exports.login = (req, res, next) => {
       })
       .catch(error => res.status(500).json({ error }));
   };
+
+  exports.getOneBuyer = (req, res, next) => {
+    Buyer.findOne({
+      _id: req.params.id
+    }).then(
+      (buyer) => {
+        res.status(200).json(buyer);
+      }
+    ).catch(
+      (error) => {
+        res.status(404).json({
+          error: error
+        });
+      }
+    );
+  };

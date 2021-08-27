@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const Product = require('./Product');
 
 const warehouseSchema = mongoose.Schema({
     address: { type: String, required: true },
