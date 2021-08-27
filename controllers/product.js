@@ -1,16 +1,26 @@
 const Product = require('../models/product');
 
 exports.createProduct = (req, res, next) => {
-    const productObject = JSON.parse(req.body.product);
-    delete productObject._id;
-    const product = new Thing({
-      ...productObject,
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    });
-    thing.save()
-      .then(() => res.status(201).json({ message: 'Product created'}))
-      .catch(error => res.status(400).json({ error }));
-  };
+  const product = new Product({
+    name: req.body.name,
+    description: req.body.description,
+    brand: req.body.brand,
+    sellerId: req.body.sellerId,
+  });
+  product.save().then(
+    () => {
+      res.status(201).json({
+        message: 'Product created'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
 
 exports.getOneProduct = (req, res, next) => {
   Product.findOne({
@@ -40,7 +50,7 @@ exports.modifyProduct = (req, res, next) => {
   Product.updateOne({_id: req.params.id}, product).then(
     () => {
       res.status(201).json({
-        message: 'Product updated successfully!'
+        message: 'Product updated'
       });
     }
   ).catch(

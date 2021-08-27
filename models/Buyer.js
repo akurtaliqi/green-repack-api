@@ -7,6 +7,6 @@ const buyerSchema = mongoose.Schema({
   password: { type: String, required: true }
 });
 
-userSchema.plugin(uniqueValidator);
+buyerSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('Buyer', buyerSchema);

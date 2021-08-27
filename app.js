@@ -1,18 +1,19 @@
+require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const stuffRoutes = require('./routes/stuff');
 const productRoutes = require('./routes/product');
-const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/buyer');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://ajtene:ajtene@cluster0.g4gmb.mongodb.net/green-repack?retryWrites=true&w=majority',
+mongoose.connect('mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
+  .catch(() => console.log('Connexion à MongoDB échouée !')
+);
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -22,8 +23,6 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json())
-
-app.use('/api/stuff', stuffRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/auth', userRoutes);
 
