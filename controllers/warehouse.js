@@ -2,7 +2,10 @@ const Warehouse = require('../models/warehouse');
 
 exports.createWarehouse = (req, res, next) => {
   const warehouse = new Warehouse({
-    address: req.body.address,
+    addressNumber: req.body.addressNumber,
+    addressRoad: req.body.addressRoad,
+    addressPostalCode: req.body.addressPostalCode,
+    addressCity: req.body.addressCity,
     country: req.body.country,
   });
   warehouse.save().then(
@@ -39,7 +42,10 @@ exports.getOneWarehouse = (req, res, next) => {
 exports.modifyWarehouse = (req, res, next) => {
   const warehouse = new Warehouse({
     _id: req.params.id,
-    address: req.body.address,
+    addressNumber: req.body.addressNumber,
+    addressRoad: req.body.addressRoad,
+    addressPostalCode: req.body.addressPostalCode,
+    addressCity: req.body.addressCity,
     country: req.body.country,
   });
   Warehouse.updateOne({_id: req.params.id}, warehouse).then(

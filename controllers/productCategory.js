@@ -1,4 +1,4 @@
-const Category = require('../models/category');
+const Category = require('../models/productCategory');
 
 exports.createCategory = (req, res, next) => {
   const category = new Category({

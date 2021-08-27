@@ -87,7 +87,7 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.getAllProducts = (req, res, next) => {
-  Product.find({ sellOffer: true }).then(
+  Product.find({ sellOfferAccept: true }).then(
     (products) => {
       res.status(200).json(products);
     }
@@ -101,7 +101,7 @@ exports.getAllProducts = (req, res, next) => {
 };
 
 exports.getAllProductsAccepted = (req, res, next) => {
-  Product.find({ sellOffer: true }).then(
+  Product.find({ sellOfferAccept: true }).then(
     (products) => {
       res.status(200).json(products);
     }
