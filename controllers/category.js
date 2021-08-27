@@ -2,8 +2,7 @@ const Category = require('../models/category');
 
 exports.createCategory = (req, res, next) => {
   const category = new Category({
-    ame: req.body.name,
-    //attribs
+    name: req.body.name,
   });
   category.save().then(
     () => {
@@ -39,8 +38,7 @@ exports.getOneCatgory = (req, res, next) => {
 exports.modifyCategory = (req, res, next) => {
   const category = new Category({
     _id: req.params.id,
-    title: req.body.title,
-    //attribs
+    name: req.body.name,
   });
   Category.updateOne({_id: req.params.id}, category).then(
     () => {
