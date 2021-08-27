@@ -2,13 +2,12 @@ const Product = require('../models/product');
 
 exports.createProduct = (req, res, next) => {
   const product = new Product({
-    name: req.body.name,
+    title: req.body.title,
     description:req.body.description,
     brand: req.body.brand,
     features: req.body.features,
     state: req.body.state,
-    priceOffer: req.body.priceOffer,
-    sellOffer: req.body.sellOffer,
+    sellOfferAccept: false,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     warehouseId: req.body.warehouseId,
@@ -47,13 +46,11 @@ exports.getOneProduct = (req, res, next) => {
 exports.modifyProduct = (req, res, next) => {
   const product = new Product({
     _id: req.params.id,
-    name: req.body.name,
+    title: req.body.title,
     description:req.body.description,
     brand: req.body.brand,
     features: req.body.features,
     state: req.body.state,
-    priceOffer: req.body.priceOffer,
-    sellOffer: req.body.sellOffer,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     warehouseId: req.body.warehouseId,
