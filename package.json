@@ -8,9 +8,10 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-prebuild": "npm install --dev",
     "postinstall": "npm run build",
     "start": "node app.js",
-    "build": "webpack --config=Scripts/config/webpack.prod.js"
+    "build": "npm install --dev"
   },
   "author": "",
   "license": "ISC",
