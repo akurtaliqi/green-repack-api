@@ -7,7 +7,7 @@ exports.createProduct = (req, res, next) => {
     brand: req.body.brand,
     features: req.body.features,
     state: req.body.state,
-    sellOfferAccept: false,
+    sellOfferAccept: req.body.state,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     warehouseId: req.body.warehouseId,
