@@ -1,10 +1,10 @@
-const Category = require('../models/productCategory');
+const ProductCategory = require('../models/productCategory');
 
 exports.createCategory = (req, res, next) => {
-  const category = new Category({
+  const productCategory = new ProductCategory({
     name: req.body.name,
   });
-  category.save().then(
+  productCategory.save().then(
     () => {
       res.status(201).json({
         message: 'category created'
@@ -20,11 +20,11 @@ exports.createCategory = (req, res, next) => {
 };
 
 exports.getOneCatgory = (req, res, next) => {
-  Category.findOne({
+  ProductCategory.findOne({
     _id: req.params.id
   }).then(
-    (category) => {
-      res.status(200).json(category);
+    (productCategory) => {
+      res.status(200).json(productCategory);
     }
   ).catch(
     (error) => {
@@ -36,11 +36,11 @@ exports.getOneCatgory = (req, res, next) => {
 };
 
 exports.modifyCategory = (req, res, next) => {
-  const category = new Category({
+  const productCategory = new ProductCategory({
     _id: req.params.id,
     name: req.body.name,
   });
-  Category.updateOne({_id: req.params.id}, category).then(
+  ProductCategory.updateOne({_id: req.params.id}, productCategory).then(
     () => {
       res.status(201).json({
         message: 'category updated'
@@ -56,7 +56,7 @@ exports.modifyCategory = (req, res, next) => {
 };
 
 exports.deleteCategory = (req, res, next) => {
-  Category.deleteOne({_id: req.params.id}).then(
+  ProductCategory.deleteOne({_id: req.params.id}).then(
     () => {
       res.status(200).json({
         message: 'category deleted'
@@ -72,7 +72,7 @@ exports.deleteCategory = (req, res, next) => {
 };
 
 exports.getAllCategories = (req, res, next) => {
-  Category.find({ sellOffer: true }).then(
+  ProductCategory.find().then(
     (categories) => {
       res.status(200).json(categories);
     }

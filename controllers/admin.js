@@ -1,40 +1,40 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Buyer = require("../models/Buyer");
+const Admin = require("../models/Admin");
 
 exports.signup = (req, res) => {
   // console.log("req.body====>", req.body);
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
-      const buyer = new Buyer({
-        email: req.body.email,
+      const admin = new Admin({
+        username: req.body.username,
         password: hash,
       });
-      buyer
+      admin
         .save()
-        .then(() => res.status(201).json({ message: "Buyer created" }))
+        .then(() => res.status(201).json({ message: "Admin created" }))
         .catch((error) => res.status(400).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
 };
 
 exports.login = (req, res) => {
-  Buyer.findOne({ email: req.body.email })
-    .then((buyer) => {
-      if (!buyer) {
-        return res.status(401).json({ error: "Buyer not find" });
+    Admin.findOne({ username: req.body.username })
+    .then((admin) => {
+      if (!admin) {
+        return res.status(401).json({ error: "Admin not find" });
       }
       bcrypt
-        .compare(req.body.password, buyer.password)
+        .compare(req.body.password, admin.password)
         .then((valid) => {
           if (!valid) {
-            return res.status(401).json({ error: "Buyer wrong password" });
+            return res.status(401).json({ error: "Admin wrong password" });
           }
           res.status(200).json({
-            buyerId: buyer._id,
-            token: jwt.sign({ buyerId: buyer._id }, "RANDOM_TOKEN_SECRET", {
+            adminId: admin._id,
+            token: jwt.sign({ adminId: admin._id }, "RANDOM_TOKEN_SECRET", {
               expiresIn: "24h",
             }),
           });
@@ -44,15 +44,15 @@ exports.login = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-exports.getOneBuyer = (req, res) => {
-  Buyer.findOne(
+exports.getOneAdmin = (req, res) => {
+    Admin.findOne(
     {
       _id: req.params.id,
     },
     { password: 0 }
   )
-    .then((buyer) => {
-      res.status(200).json(buyer);
+    .then((admin) => {
+      res.status(200).json(admin);
     })
     .catch((error) => {
       res.status(404).json({
