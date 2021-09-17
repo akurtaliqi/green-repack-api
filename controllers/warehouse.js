@@ -1,4 +1,4 @@
-const Warehouse = require('../models/warehouse');
+const Warehouse = require('../models/Warehouse');
 
 exports.createWarehouse = (req, res, next) => {
   const warehouse = new Warehouse({
@@ -81,8 +81,8 @@ exports.deleteWarehouse = (req, res, next) => {
 
 exports.getAllWarehouses = (req, res, next) => {
   Warehouse.find({ sellOffer: true }).then(
-    (categories) => {
-      res.status(200).json(categories);
+    (warehouses) => {
+      res.status(200).json(warehouses);
     }
   ).catch(
     (error) => {

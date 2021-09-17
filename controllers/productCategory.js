@@ -73,8 +73,8 @@ exports.deleteCategory = (req, res, next) => {
 
 exports.getAllCategories = (req, res, next) => {
   ProductCategory.find().then(
-    (categories) => {
-      res.status(200).json(categories);
+    (productcategories) => {
+      res.status(200).json(productcategories);
     }
   ).catch(
     (error) => {

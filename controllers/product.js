@@ -2,6 +2,10 @@ const Product = require('../models/product');
 
 exports.createProduct = (req, res) => {
   // TODO  calculate price with product model
+  // get product model 
+  // get state product and descrease if needed
+  // and set price
+
   const product = new Product({
     title: req.body.title,
     description: req.body.description,
