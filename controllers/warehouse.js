@@ -80,7 +80,7 @@ exports.deleteWarehouse = (req, res, next) => {
 };
 
 exports.getAllWarehouses = (req, res, next) => {
-  Warehouse.find({ sellOffer: true }).then(
+  Warehouse.find().then(
     (warehouses) => {
       res.status(200).json(warehouses);
     }

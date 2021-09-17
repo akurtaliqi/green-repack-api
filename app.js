@@ -56,7 +56,7 @@ app.use("/api/buyer/auth", buyerRoutes);
 app.use("/api/seller/auth", sellerRoutes);
 app.use("/api/productCategory", productCategoryRoutes);
 app.use("/api/warehouse", wahrehouseRoutes);
-app.use("/api/warehouse", productStateRoutes);
+app.use("/api/productState", productStateRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

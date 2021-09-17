@@ -11,7 +11,7 @@ exports.createProduct = (req, res) => {
     description: req.body.description,
     brand: req.body.brand,
     features: req.body.features,
-    state: req.body.state,
+    productStateId: req.body.productStateId,
     createDate: Date.now(),
     updateDate: null,
     sellOfferAccept: false,
@@ -19,7 +19,7 @@ exports.createProduct = (req, res) => {
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
   });
-  if (req.files) {
+  if (req.files && req.state == 200) {
     product["images"] = [];
     req.files.map((file) => {
       product.images.push(file.filename);
@@ -63,7 +63,7 @@ exports.modifyProduct = (req, res, next) => {
     brand: req.body.brand,
     features: req.body.features,
     updateDate: Date.now(),
-    state: req.body.state,
+    productStateId: req.body.state,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     warehouseId: req.body.warehouseId,
@@ -100,6 +100,7 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.getAllProducts = (req, res, next) => {
+  // TODO fix sellOfferAccept
   Product.find({ sellOfferAccept: true }).then(
     (products) => {
       res.status(200).json(products);
@@ -114,6 +115,7 @@ exports.getAllProducts = (req, res, next) => {
 };
 
 exports.getAllProductsAccepted = (req, res, next) => {
+   // TODO fix sellOfferAccept
   Product.find({ sellOfferAccept: true }).then(
     (products) => {
       res.status(200).json(products);

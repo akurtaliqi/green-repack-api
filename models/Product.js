@@ -11,7 +11,7 @@ const productSchema = mongoose.Schema({
     // priceOffer: { type: Number },
     sellOfferAccept: { type: Boolean, required: true },
     verified: { type: Boolean, required: true },
-    stateId: { type: String, required: true },
+    productStateId: { type: String, required: true },
     // productModelId: { type: String, required: true },
     sellerId: { type: String, required: true },
     categoryId: { type: String, required: true },

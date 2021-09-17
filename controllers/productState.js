@@ -77,7 +77,7 @@ exports.deleteProductState = (req, res, next) => {
 };
 
 exports.getAllProductStates = (req, res, next) => {
-  ProductState.find({ sellOffer: true }).then(
+  ProductState.find().then(
     (productstates) => {
       res.status(200).json(productstates);
     }
