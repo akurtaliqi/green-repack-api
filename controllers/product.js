@@ -1,32 +1,38 @@
 const Product = require('../models/product');
 
-exports.createProduct = (req, res, next) => {
+exports.createProduct = (req, res) => {
+  // TODO  calculate price with product model
   const product = new Product({
     title: req.body.title,
-    description:req.body.description,
+    description: req.body.description,
     brand: req.body.brand,
     features: req.body.features,
     state: req.body.state,
     createDate: Date.now(),
     updateDate: null,
     sellOfferAccept: false,
+    verified: false,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
-    warehouseId: req.body.warehouseId,
   });
-  product.save().then(
-    () => {
+  if (req.files) {
+    product["images"] = [];
+    req.files.map((file) => {
+      product.images.push(file.filename);
+    });
+  }
+  product
+    .save()
+    .then(() => {
       res.status(201).json({
-        message: 'Product created'
+        message: "Product created",
       });
-    }
-  ).catch(
-    (error) => {
+    })
+    .catch((error) => {
       res.status(400).json({
-        error: error
+        error: error,
       });
-    }
-  );
+    });
 };
 
 exports.getOneProduct = (req, res, next) => {

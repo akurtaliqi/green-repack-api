@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Buyer = require("../models/Buyer");
 
 exports.signup = (req, res) => {
-  // console.log("req.body====>", req.body);
+  console.log("req.body====>", req.body);
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -35,7 +35,7 @@ exports.login = (req, res) => {
           res.status(200).json({
             buyerId: buyer._id,
             token: jwt.sign({ buyerId: buyer._id }, "RANDOM_TOKEN_SECRET", {
-              expiresIn: "24h",
+              expiresIn: "120s",
             }),
           });
         })

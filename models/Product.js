@@ -8,22 +8,17 @@ const productSchema = mongoose.Schema({
     state: { type: String, required: true },
     createDate: { type: Date, required: true },
     updateDate: { type: Date },
-    priceOffer: { type: Number },
+    // priceOffer: { type: Number },
     sellOfferAccept: { type: Boolean, required: true },
     verified: { type: Boolean, required: true },
-    productModelId: { type: String, required: true },
+    // productModelId: { type: String, required: true },
     sellerId: { type: String, required: true },
     categoryId: { type: String, required: true },
-    warehouseId: { type: String },
-    /*
-    img:
-    {
-        data: Buffer,
-        contentType: String
+    // warehouseId: { type: String },
+    images: {
+        type: [String],
     },
-    
-    stock: { type: Number, required: true },
-    */
+    // priceSell: { type: Number },
 });
 
 module.exports = mongoose.model('Product', productSchema);

@@ -1,11 +1,9 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const productRoutes = require("./routes/product");
 const buyerRoutes = require("./routes/buyer");
-const adminRoutes = require("./routes/admin");
 const sellerRoutes = require("./routes/seller");
 const productCategoryRoutes = require("./routes/productCategory");
 const wahrehouseRoutes = require("./routes/warehouse");
@@ -21,7 +19,7 @@ const normalizePort = (val) => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.PORT || "4000");
 
 const app = express();
 mongoose.set("useNewUrlParser", true);
@@ -47,15 +45,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.static(__dirname + "/uploads"));
+app.use("/uploads", express.static("uploads"));
+
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api/product", productRoutes);
 app.use("/api/buyer/auth", buyerRoutes);
 app.use("/api/seller/auth", sellerRoutes);
-app.use("/api/admin/auth", adminRoutes);
 app.use("/api/productCategory", productCategoryRoutes);
 app.use("/api/warehouse", wahrehouseRoutes);
 
 app.listen(port, () => {
-  console.log(`Green repack API listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
