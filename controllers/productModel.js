@@ -3,6 +3,9 @@ const ProductModel = require('../models/productModel');
 exports.createProductModel = (req, res, next) => {
   const productModel = new ProductModel({
     name: req.body.name,
+    brand: req.body.brand,
+    price: req.body.price,
+    categoryId: req.body.categoryId,
   });
   productModel.save().then(
     () => {
@@ -39,6 +42,9 @@ exports.modifyProductModel = (req, res, next) => {
   const productModel = new ProductModel({
     _id: req.params.id,
     name: req.body.name,
+    brand: req.body.brand,
+    price: req.body.price,
+    categoryId: req.body.categoryId,
   });
   ProductModel.updateOne({_id: req.params.id}, productModel).then(
     () => {

@@ -3,8 +3,6 @@ const ProductCategory = require('../models/productCategory');
 exports.createCategory = (req, res, next) => {
   const productCategory = new ProductCategory({
     name: req.body.name,
-    brand: req.body.brand,
-    price: req.body.price,
   });
   productCategory.save().then(
     () => {
@@ -41,8 +39,6 @@ exports.modifyCategory = (req, res, next) => {
   const productCategory = new ProductCategory({
     _id: req.params.id,
     name: req.body.name,
-    brand: req.body.brand,
-    price: req.body.price,
   });
   ProductCategory.updateOne({_id: req.params.id}, productCategory).then(
     () => {

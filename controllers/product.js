@@ -9,16 +9,25 @@ exports.createProduct = (req, res) => {
   const product = new Product({
     title: req.body.title,
     description: req.body.description,
-    brand: req.body.brand,
+    // brand: req.body.brand,
     features: req.body.features,
-    productStateId: req.body.productStateId,
     createDate: Date.now(),
     updateDate: null,
     sellOfferAccept: false,
     verified: false,
+
+    productStateId: req.body.productStateId,
+    brandId: req.body.brandId,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
+
+    // productModelId: req.body.productModelId,
   });
+
+  // get product model with brandId and categoryId
+  // calculate price with productState
+  // set price
+  // return price
 
   // TO DO CATCH IF BAD REQUEST
   if (req.files) {
@@ -28,7 +37,7 @@ exports.createProduct = (req, res) => {
     });
   }
 
-  
+
 
   product
     .save()
