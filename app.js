@@ -8,6 +8,7 @@ const sellerRoutes = require("./routes/seller");
 const productCategoryRoutes = require("./routes/productCategory");
 const wahrehouseRoutes = require("./routes/warehouse");
 const productStateRoutes = require("./routes/productState");
+const productModelRoutes = require("./routes/productModel");
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
@@ -57,6 +58,7 @@ app.use("/api/seller/auth", sellerRoutes);
 app.use("/api/productCategory", productCategoryRoutes);
 app.use("/api/warehouse", wahrehouseRoutes);
 app.use("/api/productState", productStateRoutes);
+app.use("/api/productModel", productModelRoutes);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
