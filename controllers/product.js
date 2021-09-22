@@ -19,12 +19,17 @@ exports.createProduct = (req, res) => {
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
   });
-  if (req.files && req.state == 200) {
+
+  // TO DO CATCH IF BAD REQUEST
+  if (req.files) {
     product["images"] = [];
     req.files.map((file) => {
       product.images.push(file.filename);
     });
   }
+
+  
+
   product
     .save()
     .then(() => {
@@ -101,7 +106,7 @@ exports.deleteProduct = (req, res, next) => {
 
 exports.getAllProducts = (req, res, next) => {
   // TODO fix sellOfferAccept
-  Product.find({ sellOfferAccept: true }).then(
+  Product.find().then(
     (products) => {
       res.status(200).json(products);
     }
@@ -128,3 +133,4 @@ exports.getAllProductsAccepted = (req, res, next) => {
     }
   );
 };
+
