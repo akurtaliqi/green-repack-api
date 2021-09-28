@@ -4,6 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const productState = mongoose.Schema({
   name: { type: String, required: true },
   description: { type: String, required: true },
+  decrease: {type: Number, required: true},
 });
 
 productState.plugin(uniqueValidator);

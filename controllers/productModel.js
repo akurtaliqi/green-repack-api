@@ -3,7 +3,7 @@ const ProductModel = require('../models/productModel');
 exports.createProductModel = (req, res, next) => {
   const productModel = new ProductModel({
     name: req.body.name,
-    brand: req.body.brand,
+    // brand: req.body.brand,
     price: req.body.price,
     categoryId: req.body.categoryId,
   });
@@ -37,6 +37,24 @@ exports.getOneProductModel = (req, res, next) => {
     }
   );
 };
+
+exports.getProductModelByCategory = (req, res, next) => {
+  console.log('it works')
+ProductModel.findOne({
+  categoryId: req.params.id
+}).then(
+  (ProductModel) => {
+    res.status(200).json(ProductModel);
+  }
+).catch(
+  (error) => {
+    res.status(404).json({
+      error: error
+    });
+  }
+);
+};
+
 
 exports.modifyProductModel = (req, res, next) => {
   const productModel = new ProductModel({

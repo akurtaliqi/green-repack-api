@@ -5,7 +5,7 @@ const productModelSchema = mongoose.Schema({
     // brand: { type: String, required: true },
     price: { type: Number, required: true },
     categoryId: { type: String, required: true },
-    brandId: { type: String, required: true },
+    // brandId: { type: String, required: true },
 });
 
 module.exports = mongoose.model('ProductModel', productModelSchema);

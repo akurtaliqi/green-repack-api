@@ -1,15 +1,19 @@
 const SellOffer = require('../models/sellOffer');
 
 exports.createSellOffer = (req, res, next) => {
+  console.log(req.body.productId)
+  console.log(req.body.sellOfferPrice)
   const sellOffer = new SellOffer({
-    name: req.body.name,
-    description: req.body.description,
+    price: req.body.sellOfferPrice,
+    // discount: req.body.description,
+    sellOfferAccept: false,
+    productId: req.body.productId,
+    sellerId: req.body.sellerId,
+    createDate: Date.now(),
   });
   sellOffer.save().then(
-    () => {
-      res.status(201).json({
-        message: 'Sell offer created'
-      });
+    (sellOfferId) => {
+        res.status(201).json(sellOffer._id);
     }
   ).catch(
     (error) => {

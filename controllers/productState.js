@@ -4,6 +4,7 @@ exports.createProductState = (req, res, next) => {
   const productState = new ProductState({
     name: req.body.name,
     description: req.body.description,
+    decrease: req.body.decrease,
   });
   productState.save().then(
     () => {

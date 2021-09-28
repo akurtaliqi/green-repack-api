@@ -1,34 +1,24 @@
 const Product = require('../models/product');
 
 exports.createProduct = (req, res) => {
-  // TODO  calculate price with product model
-  // get product model 
-  // get state product and descrease if needed
-  // and set price
 
+  console.log(new Date().toISOString())
+  console.log(new Date())
+  const start = Date.now();
+  console.log(start);
   const product = new Product({
     title: req.body.title,
     description: req.body.description,
-    // brand: req.body.brand,
+    brand: req.body.brand,
     features: req.body.features,
-    createDate: Date.now(),
+    createDate: start,
     updateDate: null,
-    sellOfferAccept: false,
     verified: false,
-
     productStateId: req.body.productStateId,
-    brandId: req.body.brandId,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
-
-    // productModelId: req.body.productModelId,
+    productModelId: req.body.productModelId,
   });
-
-  // get product model with brandId and categoryId
-  // calculate price with productState
-  // set price
-  // return price
-
   // TO DO CATCH IF BAD REQUEST
   if (req.files) {
     product["images"] = [];
@@ -37,20 +27,15 @@ exports.createProduct = (req, res) => {
     });
   }
 
-
-
-  product
-    .save()
-    .then(() => {
-      res.status(201).json({
-        message: "Product created",
-      });
-    })
-    .catch((error) => {
+  product.save().then(
+    (productId) => {
+      res.status(201).json(product._id);
+    }
+    ).catch((error) => {
       res.status(400).json({
-        error: error,
-      });
+      error: error,
     });
+  });
 };
 
 exports.getOneProduct = (req, res, next) => {
