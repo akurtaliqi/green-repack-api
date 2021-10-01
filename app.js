@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const productRoutes = require("./routes/product");
 const buyerRoutes = require("./routes/buyer");
 const sellerRoutes = require("./routes/seller");
+const adminRoutes = require("./routes/admin");
 const productCategoryRoutes = require("./routes/productCategory");
 const wahrehouseRoutes = require("./routes/warehouse");
 const productStateRoutes = require("./routes/productState");
@@ -24,8 +25,10 @@ const normalizePort = (val) => {
   return false;
 };
 const port = normalizePort(process.env.PORT || "4000");
+const END_POINT_SECRET = process.env.END_POINT_SECRET;
 
 const app = express();
+const stripe = require('stripe');
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.set("useCreateIndex", true);
@@ -49,6 +52,35 @@ app.use((req, res, next) => {
   next();
 });
 
+const endpointSecret = END_POINT_SECRET;
+
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+  const sig = request.headers['stripe-signature'];
+
+  let event;
+
+  try {
+    event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+  } catch (err) {
+    response.status(400).send(`Webhook Error: ${err.message}`);
+    return;
+  }
+
+  // Handle the event
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+      // Then define and call a function to handle the event payment_intent.succeeded
+      break;
+    // ... handle other event types
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  response.send();
+});
+
 app.use(express.static(__dirname + "/uploads"));
 app.use("/uploads", express.static("uploads"));
 
@@ -57,6 +89,7 @@ app.use(express.json());
 app.use("/api/product", productRoutes);
 app.use("/api/buyer/auth", buyerRoutes);
 app.use("/api/seller/auth", sellerRoutes);
+app.use("/api/admin/auth", adminRoutes);
 app.use("/api/productCategory", productCategoryRoutes);
 app.use("/api/warehouse", wahrehouseRoutes);
 app.use("/api/productState", productStateRoutes);

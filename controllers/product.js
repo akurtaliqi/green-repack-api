@@ -13,6 +13,8 @@ exports.createProduct = (req, res) => {
     features: req.body.features,
     createDate: start,
     updateDate: null,
+    sent: false,
+    received: false,
     verified: false,
     productStateId: req.body.productStateId,
     sellerId: req.body.sellerId,
@@ -57,15 +59,20 @@ exports.getOneProduct = (req, res, next) => {
 exports.modifyProduct = (req, res, next) => {
   const product = new Product({
     _id: req.params.id,
+    images: req.body.images,
     title: req.body.title,
-    description:req.body.description,
+    description: req.body.description,
     brand: req.body.brand,
     features: req.body.features,
+    createDate: req.body.createDate,
     updateDate: Date.now(),
-    productStateId: req.body.state,
+    sent: req.body.sent,
+    received: req.body.received,
+    verified: req.body.verified,
+    productStateId: req.body.productStateId,
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
-    warehouseId: req.body.warehouseId,
+    productModelId: req.body.productModelId,
   });
   Product.updateOne({_id: req.params.id}, product).then(
     () => {
@@ -115,7 +122,7 @@ exports.getAllProducts = (req, res, next) => {
 
 exports.getAllProductsAccepted = (req, res, next) => {
    // TODO fix sellOfferAccept
-  Product.find({ sellOfferAccept: true }).then(
+  Product.find({ verified:true }).then(
     (products) => {
       res.status(200).json(products);
     }
@@ -126,5 +133,20 @@ exports.getAllProductsAccepted = (req, res, next) => {
       });
     }
   );
+};
+
+exports.getAllProductsToValidate = (req, res, next) => {
+  // TODO fix sellOfferAccept
+ Product.find({ sent:true, received:false, verified:false,  }).then(
+   (products) => {
+     res.status(200).json(products);
+   }
+ ).catch(
+   (error) => {
+     res.status(400).json({
+       error: error
+     });
+   }
+ );
 };
 

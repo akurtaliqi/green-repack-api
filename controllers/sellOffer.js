@@ -1,14 +1,14 @@
 const SellOffer = require('../models/sellOffer');
 
 exports.createSellOffer = (req, res, next) => {
-  console.log(req.body.productId)
-  console.log(req.body.sellOfferPrice)
   const sellOffer = new SellOffer({
     price: req.body.sellOfferPrice,
     // discount: req.body.description,
     sellOfferAccept: false,
     productId: req.body.productId,
     sellerId: req.body.sellerId,
+    // couponPath: "",
+    couponDownloaded: false,
     createDate: Date.now(),
   });
   sellOffer.save().then(
@@ -43,11 +43,10 @@ exports.getOneSellOffer = (req, res, next) => {
 exports.modifySellOffer = (req, res, next) => {
   const sellOffer = new SellOffer({
     _id: req.params.id,
-    addressNumber: req.body.addressNumber,
-    addressRoad: req.body.addressRoad,
-    addressPostalCode: req.body.addressPostalCode,
-    addressCity: req.body.addressCity,
-    country: req.body.country,
+    price: req.body.price,
+    sellOfferAccept: req.body.sellOfferAccept,
+    productId: req.body.productId,
+    sellerId: req.body.sellerId,
   });
   SellOffer.updateOne({_id: req.params.id}, sellOffer).then(
     () => {
@@ -92,4 +91,22 @@ exports.getAllSellOffers = (req, res, next) => {
       });
     }
   );
+};
+
+
+exports.getAllSellOffersBySellerId = (req, res, next) => {
+  SellOffer.find({
+    sellerId: req.params.id,
+    sellOfferAccept: true
+  }).then(
+  (sellOffers) => {
+    res.status(200).json(sellOffers);
+  }
+).catch(
+  (error) => {
+    res.status(400).json({
+      error: error
+    });
+  }
+);
 };

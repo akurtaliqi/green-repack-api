@@ -15,10 +15,11 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-router.get("/", productController.getAllProducts);
+router.get("/", productController.getAllProductsAccepted);
+router.get("/validate", productController.getAllProductsToValidate);
 router.post("/", upload.any(), productController.createProduct);
 router.get("/:id", productController.getOneProduct);
-router.put("/:id", auth, productController.modifyProduct);
-router.delete("/:id", auth, productController.deleteProduct);
+router.put("/:id", productController.modifyProduct);
+router.delete("/:id", productController.deleteProduct);
 
 module.exports = router;
