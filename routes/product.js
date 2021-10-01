@@ -20,6 +20,7 @@ router.get("/validate", productController.getAllProductsToValidate);
 router.post("/", upload.any(), productController.createProduct);
 router.get("/:id", productController.getOneProduct);
 router.put("/:id", productController.modifyProduct);
+router.put("/sent/:id", productController.modifySent);
 router.delete("/:id", productController.deleteProduct);
 
 module.exports = router;

@@ -40,11 +40,9 @@ exports.getOneProductState = (req, res, next) => {
 exports.modifyProductState = (req, res, next) => {
   const productState = new ProductState({
     _id: req.params.id,
-    addressNumber: req.body.addressNumber,
-    addressRoad: req.body.addressRoad,
-    addressPostalCode: req.body.addressPostalCode,
-    addressCity: req.body.addressCity,
-    country: req.body.country,
+    name: req.body.name,
+    description: req.body.description,
+    decrease: req.body.decrease,
   });
   ProductState.updateOne({_id: req.params.id}, productState).then(
     () => {

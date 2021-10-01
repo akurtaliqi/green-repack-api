@@ -56,6 +56,29 @@ exports.getOneProduct = (req, res, next) => {
   );
 };
 
+exports.modifySent = (req, res, next) => {
+  const product = new Product({
+    _id: req.params.id,
+    images: req.body.images,
+    sent: req.body.sent,
+    updateDate: Date.now(),
+  });
+  Product.updateOne({_id: req.params.id}, product).then(
+    () => {
+      res.status(201).json({
+        message: 'Product updated'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
+
+
 exports.modifyProduct = (req, res, next) => {
   const product = new Product({
     _id: req.params.id,
