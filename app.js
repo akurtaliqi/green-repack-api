@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+var cors = require('cors')
 
 const productRoutes = require("./routes/product");
 const buyerRoutes = require("./routes/buyer");
@@ -24,11 +25,14 @@ const normalizePort = (val) => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || "4000");
+const port = normalizePort(process.env.PORT || "4242");
 const END_POINT_SECRET = process.env.END_POINT_SECRET;
 
 const app = express();
-const stripe = require('stripe');
+const stripe = require('stripe')('sk_test_51JfOTNKqXtPaxbjmHLKF5pT44Yp0Yo3kf7fOLM42bv2wMwEdIgodPoeKUpbYv39IVUwjjrAQEmDmVc22aHb8MMAQ00qE7RQmhK');
+
+// app.use();
+app.use(cors())
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.set("useCreateIndex", true);
@@ -53,6 +57,8 @@ app.use((req, res, next) => {
 });
 
 const endpointSecret = END_POINT_SECRET;
+
+const YOUR_DOMAIN = 'http://localhost:8081';
 
 app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
   const sig = request.headers['stripe-signature'];
@@ -81,8 +87,10 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   response.send();
 });
 
+
 app.use(express.static(__dirname + "/uploads"));
 app.use("/uploads", express.static("uploads"));
+app.use("/create-checkout-session", express.static('public'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
