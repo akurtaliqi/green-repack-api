@@ -25,9 +25,10 @@ const normalizePort = (val) => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || "4242");
+const port = normalizePort(process.env.PORT || "3000");
 const END_POINT_SECRET = process.env.END_POINT_SECRET;
-
+const db_cloud_host = process.env.DB_HOST_CLOUD;
+const db_cloud_local = process.env.DB_HOST_LOCAL;
 const app = express();
 const stripe = require('stripe')('sk_test_51JfOTNKqXtPaxbjmHLKF5pT44Yp0Yo3kf7fOLM42bv2wMwEdIgodPoeKUpbYv39IVUwjjrAQEmDmVc22aHb8MMAQ00qE7RQmhK');
 
@@ -38,7 +39,7 @@ mongoose.set("useUnifiedTopology", true);
 mongoose.set("useCreateIndex", true);
 mongoose
   .connect(
-    "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+    db_cloud_host
   )
   .then(() => console.log("Connexion à MongoDB réussie !"))
   .catch(() => console.log("Connexion à MongoDB échouée !"));
