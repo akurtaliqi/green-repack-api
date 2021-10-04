@@ -106,6 +106,6 @@ app.use("/api/productModel", productModelRoutes);
 app.use("/api/productBrand", productBrandRoutes);
 app.use("/api/sellOffer", sellOfferRoutes);
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
