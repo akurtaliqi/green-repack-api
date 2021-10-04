@@ -37,12 +37,9 @@ app.use(cors())
 mongoose.set("useNewUrlParser", true);
 mongoose.set("useUnifiedTopology", true);
 mongoose.set("useCreateIndex", true);
-mongoose
-  .connect(
-    "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
-  )
-  .then(() => console.log("Connexion à MongoDB réussie !"))
-  .catch(() => console.log("Connexion à MongoDB échouée !"));
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+        .then(connect => console.log('connected to mongodb..'))
+        .catch(e => console.log('could not connect to mongodb', e))
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
