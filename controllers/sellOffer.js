@@ -1,4 +1,4 @@
-const SellOffer = require('../models/sellOffer');
+const SellOffer = require('../models/SellOffer');
 
 exports.createSellOffer = (req, res, next) => {
   const sellOffer = new SellOffer({

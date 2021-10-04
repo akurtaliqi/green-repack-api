@@ -1,4 +1,4 @@
-const ProductCategory = require('../models/productCategory');
+const ProductCategory = require('../models/ProductCategory');
 
 exports.createCategory = (req, res, next) => {
   const productCategory = new ProductCategory({

@@ -1,4 +1,4 @@
-const ProductState = require('../models/productState');
+const ProductState = require('../models/ProductState');
 
 exports.createProductState = (req, res, next) => {
   const productState = new ProductState({

@@ -1,4 +1,4 @@
-const ProductBrand = require('../models/productBrand');
+const ProductBrand = require('../models/ProductBrand');
 
 exports.createProductBrand = (req, res, next) => {
   const productBrand = new ProductBrand({

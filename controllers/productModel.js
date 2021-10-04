@@ -1,4 +1,4 @@
-const ProductModel = require('../models/productModel');
+const ProductModel = require('../models/ProductModel');
 
 exports.createProductModel = (req, res, next) => {
   const productModel = new ProductModel({
