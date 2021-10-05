@@ -96,7 +96,7 @@ exports.getAllSellOffers = (req, res, next) => {
 
 exports.getAllSellOffersBySellerId = (req, res, next) => {
   SellOffer.find({
-    sellerId: req.params.id,
+    sellerId: req.params.sellerId,
     sellOfferAccept: true
   }).then(
   (sellOffers) => {
