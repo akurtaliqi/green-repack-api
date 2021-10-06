@@ -145,6 +145,21 @@ exports.getAllProducts = (req, res, next) => {
   );
 };
 
+exports.getAllProductsToSell = (req, res, next) => {
+  // TODO fix sellOfferAccept
+ Product.find({ sent:true, received:true, verified:true,}).then(
+   (products) => {
+     res.status(200).json(products);
+   }
+ ).catch(
+   (error) => {
+     res.status(400).json({
+       error: error
+     });
+   }
+ );
+};
+
 exports.getAllProductsAccepted = (req, res, next) => {
    // TODO fix sellOfferAccept
   Product.find({ verified:true }).then(
