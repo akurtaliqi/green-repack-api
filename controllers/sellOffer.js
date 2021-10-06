@@ -110,3 +110,20 @@ exports.getAllSellOffersBySellerId = (req, res, next) => {
   }
 );
 };
+
+exports.getSellOfferByIdProduct = (req, res, next) => {
+  SellOffer.find({
+    productId: req.params.productId,
+    sellOfferAccept: true
+  }).then(
+  (sellOffers) => {
+    res.status(200).json(sellOffers);
+  }
+).catch(
+  (error) => {
+    res.status(400).json({
+      error: error
+    });
+  }
+);
+};
