@@ -112,7 +112,7 @@ exports.getAllSellOffersBySellerId = (req, res, next) => {
 };
 
 exports.getSellOfferByIdProduct = (req, res, next) => {
-  SellOffer.find({
+  SellOffer.findOne({
     productId: req.params.productId,
     sellOfferAccept: true
   }).then(
