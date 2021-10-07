@@ -1,6 +1,7 @@
 const Product = require('../models/Product');
 
 exports.createProduct = (req, res) => {
+  console.log(req.body.productStateId)
 
   console.log(new Date().toISOString())
   console.log(new Date())
