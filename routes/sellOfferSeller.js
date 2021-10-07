@@ -3,6 +3,6 @@ const router = express.Router();
 
 const sellOfferController = require('../controllers/sellOffer');
 
-router.get('/', sellOfferController.getAllSellOffersBySellerId);
+router.get('/:id', sellOfferController.getAllSellOffersBySellerId);
 
 module.exports = router;
