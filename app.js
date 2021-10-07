@@ -13,6 +13,7 @@ const productStateRoutes = require("./routes/productState");
 const productModelRoutes = require("./routes/productModel");
 const productBrandRoutes = require("./routes/productBrand");
 const sellOfferRoutes = require("./routes/sellOffer");
+const sellOfferSellerRoutes = require("./routes/sellOfferSeller");
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
@@ -102,6 +103,7 @@ app.use("/api/productState", productStateRoutes);
 app.use("/api/productModel", productModelRoutes);
 app.use("/api/productBrand", productBrandRoutes);
 app.use("/api/sellOffer", sellOfferRoutes);
+app.use("/api/selloffer/seller", sellOfferSellerRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`);

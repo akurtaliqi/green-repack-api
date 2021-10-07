@@ -25,7 +25,10 @@ exports.createSellOffer = (req, res, next) => {
 };
 
 exports.getOneSellOffer = (req, res, next) => {
-    SellOffer.findOne({
+  console.log("là")
+  console.log(req.params.sellerId)
+  console.log(req.sellerId)
+  SellOffer.findOne({
     _id: req.params.id
   }).then(
     (sellOffer) => {
@@ -95,20 +98,19 @@ exports.getAllSellOffers = (req, res, next) => {
 
 
 exports.getAllSellOffersBySellerId = (req, res, next) => {
-  console.log(req.params.sellerId)
   SellOffer.find({
-    sellerId: req.params.sellerId,
+    sellerId : req.params.sellerId,
   }).then(
   (sellOffers) => {
     res.status(200).json(sellOffers);
   }
-).catch(
-  (error) => {
-    res.status(400).json({
-      error: error
-    });
-  }
-);
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
 };
 
 exports.getSellOfferByIdProduct = (req, res, next) => {
