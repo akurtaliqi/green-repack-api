@@ -5,7 +5,6 @@ const productSchema = mongoose.Schema({
     description: { type: String, required: true },
     brand: { type: String, required: true },
     features: { type: String, required: true },
-    // state: { type: String, required: true },
     createDate: { type: Date, required: true },
     updateDate: { type: Date },
     sellPrice: { type: Number },
@@ -17,12 +16,12 @@ const productSchema = mongoose.Schema({
     productModelId: { type: String, required: true },
     sellerId: { type: String, required: true },
     categoryId: { type: String, required: true },
+    productStateId: { type: String, required: true },
     // brandId: { type: String, required: true },
     warehouseId: { type: String },
     images: {
         type: [String],
     },
-    // priceSell: { type: Number },
 });
 
 module.exports = mongoose.model('Product', productSchema);
