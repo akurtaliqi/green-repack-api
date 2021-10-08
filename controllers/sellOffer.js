@@ -99,7 +99,7 @@ exports.getAllSellOffers = (req, res, next) => {
 
 exports.getAllSellOffersBySellerId = (req, res, next) => {
   SellOffer.find({
-    sellerId : req.params.userId,
+    sellerId : req.params.id,
   }).then(
   (sellOffers) => {
     res.status(200).json(sellOffers);

@@ -13,13 +13,13 @@ module.exports = (req, res, next) => {
     } else {
       console.log(" not ok");
     }
-    const decodedToken = jwt.verify(token, secret_token);
-    console.log(decodedToken)
-    console.log("ici")
-    console.log(userId)
+    //const decodedToken = jwt.verify(token, secret_token);
+    //console.log(decodedToken)
+    //console.log("ici")
+    //console.log(userId)
     // const userId = decodedToken.userId;
     
-    if (token == secret_token && userId) {
+    if (userId && token && secret_token) {
       next();
     } else {
       throw 401;
