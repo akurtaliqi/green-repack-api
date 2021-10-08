@@ -22,6 +22,7 @@ exports.signup = (req, res) => {
 };
 
 exports.login = (req, res) => {
+  console.log(process.env.JWT_SECRET_TOKEN)
   Seller.findOne({ email: req.body.email })
     .then((seller) => {
       if (!seller) {
@@ -35,7 +36,7 @@ exports.login = (req, res) => {
           }
           res.status(200).json({
             sellerId: seller._id,
-            token: jwt.sign({ userId: seller._id }, JSON.stringify(process.env.JWT_SECRET_TOKEN), {
+            token: jwt.sign({ userId: seller._id },process.env.JWT_SECRET_TOKEN, {
               expiresIn: "24h",
             }),
           });
