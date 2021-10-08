@@ -98,6 +98,9 @@ exports.getAllSellOffers = (req, res, next) => {
 
 
 exports.getAllSellOffersBySellerId = (req, res, next) => {
+
+  console.log(req.params)
+  console.log(req.params.id)
   SellOffer.find({
     sellerId : req.params.id,
   }).then(
