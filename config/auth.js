@@ -14,6 +14,7 @@ module.exports = (req, res, next) => {
     }
     const decodedToken = jwt.verify(token, secret_token);
     console.log(decodedToken)
+    console.log("ici")
     console.log(userId)
     // const userId = decodedToken.userId;
     
