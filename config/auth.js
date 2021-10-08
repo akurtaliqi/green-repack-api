@@ -5,7 +5,8 @@ module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
     const secret_token = process.env.JWT_SECRET_TOKEN;
-    console.log(req)
+    console.log(token)
+    console.log(secret_token)
     userId = req.params.id;
     if (userId){
       console.log("ok")
