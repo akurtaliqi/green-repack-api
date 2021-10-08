@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
     userId = req.body.userId;
     const decodedToken = jwt.verify(token, secret_token);
     console.log(decodedToken)
+    console.log(userId)
     // const userId = decodedToken.userId;
     
     if (token == secret_token && userId) {

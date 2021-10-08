@@ -4,6 +4,6 @@ const auth = require("../config/auth");
 
 const sellOfferController = require('../controllers/sellOffer');
 
-router.get('/:id', auth, sellOfferController.getAllSellOffersBySellerId);
+router.post('/:id', auth, sellOfferController.getAllSellOffersBySellerId);
 
 module.exports = router;
