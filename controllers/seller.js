@@ -32,9 +32,11 @@ exports.login = (req, res) => {
           if (!valid) {
             return res.status(401).json({ error: "Seller wrong password" });
           }
+          console.log(req.headers.tokenTest),
           res.status(200).json({
             sellerId: seller._id,
-            token: jwt.sign({ userId: seller._id }, "RANDOM_TOKEN_SECRET", {
+            tokenTest: req.headers.tokenTest,
+            token: jwt.sign({ userId: seller._id }, tokenTest, {
               expiresIn: "24h",
             }),
           });
