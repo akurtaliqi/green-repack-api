@@ -19,7 +19,7 @@ module.exports = (req, res, next) => {
     //console.log(userId)
     // const userId = decodedToken.userId;
     
-    if (userId) {
+    if (userId && token && secret_token) {
       next();
     } else {
       throw 401;
