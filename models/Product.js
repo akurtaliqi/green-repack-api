@@ -12,7 +12,7 @@ const productSchema = mongoose.Schema({
     received: { type: Boolean, required: true },
     verified: { type: Boolean, required: true },
     verified: { type: Boolean, required: true },
-    sold: { type: String },
+    sold: { type: Boolean, },
     productModelId: { type: String, required: true },
     sellerId: { type: String, required: true },
     categoryId: { type: String, required: true },

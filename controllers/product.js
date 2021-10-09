@@ -13,6 +13,7 @@ exports.createProduct = (req, res) => {
     createDate: start,
     updateDate: null,
     sent: false,
+    sold: false,
     received: false,
     verified: false,
     sellPrice: null,
@@ -91,6 +92,7 @@ exports.modifyProduct = (req, res, next) => {
     updateDate: Date.now(),
     sellPrice: req.body.sellPrice,
     sent: req.body.sent,
+    sent: req.body.sent,
     received: req.body.received,
     verified: req.body.verified,
     productStateId: req.body.productStateId,
@@ -146,7 +148,7 @@ exports.getAllProducts = (req, res, next) => {
 
 exports.getAllProductsToSell = (req, res, next) => {
   // TODO fix sellOfferAccept
- Product.find({ sent:true, received:true, verified:true,}).then(
+ Product.find({ sent:true, received:true, verified:true, sold:false}).then(
    (products) => {
      res.status(200).json(products);
    }

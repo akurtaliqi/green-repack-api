@@ -103,6 +103,7 @@ exports.getAllSellOffersBySellerId = (req, res, next) => {
   console.log(req.params.id)
   SellOffer.find({
     sellerId : req.params.id,
+    sent: false,
   }).then(
   (sellOffers) => {
     res.status(200).json(sellOffers);
