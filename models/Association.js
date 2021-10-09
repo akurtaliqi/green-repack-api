@@ -11,4 +11,4 @@ const associationSchema = mongoose.Schema({
 
 associationSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('AssociationProject', associationSchema);
+module.exports = mongoose.model('Association', associationSchema);
