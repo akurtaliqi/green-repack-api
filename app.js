@@ -14,6 +14,10 @@ const productModelRoutes = require("./routes/productModel");
 const productBrandRoutes = require("./routes/productBrand");
 const sellOfferRoutes = require("./routes/sellOffer");
 const sellOfferSellerRoutes = require("./routes/sellOfferSeller");
+const association = require("./routes/association");
+const associationProject = require("./routes/associationProject");
+const greenCoin = require("./routes/greencoin");
+const order = require("./routes/order");
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
@@ -115,17 +119,27 @@ app.use("/create-checkout-session", express.static('public'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use("/api/product", productRoutes);
+
 app.use("/api/buyer/auth", buyerRoutes);
 app.use("/api/seller/auth", sellerRoutes);
 app.use("/api/admin/auth", adminRoutes);
+app.use("/api/association/auth", association);
+
+app.use("/api/product", productRoutes);
 app.use("/api/productCategory", productCategoryRoutes);
 app.use("/api/warehouse", wahrehouseRoutes);
 app.use("/api/productState", productStateRoutes);
 app.use("/api/productModel", productModelRoutes);
 app.use("/api/productBrand", productBrandRoutes);
+
+
 app.use("/api/sellOffer", sellOfferRoutes);
 app.use("/api/selloffer/seller", sellOfferSellerRoutes);
+
+app.use("/api/greencoin", greenCoin);
+app.use("/api/order", order);
+app.use("/api/associationProject", associationProject);
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`);

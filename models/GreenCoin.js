@@ -5,7 +5,7 @@ const greenCoinSchema = mongoose.Schema({
   buyerId: { type: String, required: true },
   associationId: { type: String },
   projectId: { type: String },
-  coins: { type: Number },
+  amount: { type: Number },
 });
 
 greenCoinSchema.plugin(uniqueValidator);
