@@ -61,9 +61,11 @@ const YOUR_DOMAIN = 'http://localhost:8081';
 
 app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
   const sig = request.headers['stripe-signature'];
+  console.log(sig)
+  console.log(endpointSecret)
 
   let event;
-
+  
   try {
     event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
   } catch (err) {
@@ -74,7 +76,12 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   // Handle the event
   switch (event.type) {
     case 'payment_intent.succeeded':
-      const paymentIntent = event.data.object;
+      // const paymentIntent = event.data.object;
+      const paymentIntent = stripe.paymentIntents.create({
+        amount: 2000,
+        currency: 'eur',
+        payment_method_types: ['card'],
+      });
       // Then define and call a function to handle the event payment_intent.succeeded
       break;
     // ... handle other event types
@@ -86,6 +93,21 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   response.send();
 });
 
+app.post('/webhook/createprice', express.raw({type: 'application/json'}), (request, response) => {
+  stripe.subscriptions.create({
+    customer: '{{CUSTOMER_ID}}',
+    items: [{
+      price_data: {
+        unit_amount: 5000,
+        currency: 'usd',
+        product: '{{PRODUCT_ID}}',
+        recurring: {
+          interval: 'month',
+        },
+      },
+    }],
+  });
+});
 
 app.use(express.static(__dirname + "/uploads"));
 app.use("/uploads", express.static("uploads"));
