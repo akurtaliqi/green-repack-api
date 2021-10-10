@@ -2,7 +2,10 @@ const Order = require('../models/Order');
 
 exports.createOrder = (req, res, next) => {
   const order = new Order({
-    // addressNumber: req.body.addressNumber,
+    buyerId: req.body.buyerId,
+    productId: req.body.productId,
+    price: req.body.price,
+    orderDate: Date.now(),
   });
   order.save().then(
     () => {
@@ -38,7 +41,10 @@ exports.getOneOrder = (req, res, next) => {
 exports.modifyOrder = (req, res, next) => {
   const order = new Order({
     _id: req.params.id,
-    // addressNumber: req.body.addressNumber,
+    buyerId: req.body.buyerId,
+    productId: req.body.productId,
+    price: req.body.price,
+    orderDate: req.body.orderDate,
   });
   Order.updateOne({_id: req.params.id}, order).then(
     () => {

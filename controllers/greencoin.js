@@ -2,7 +2,10 @@ const GreenCoin = require('../models/GreenCoin');
 
 exports.createGreenCoin = (req, res, next) => {
   const greenCoin = new GreenCoin({
-    // addressNumber: req.body.addressNumber,
+    buyerId: req.body.buyerId,
+    associationId: null,
+    projectId: null,
+    amount: req.body.amount,
   });
   greenCoin.save().then(
     () => {
@@ -38,7 +41,9 @@ exports.getOneGreenCoin = (req, res, next) => {
 exports.modifyGreenCoin = (req, res, next) => {
   const greenCoin = new GreenCoin({
     _id: req.params.id,
-    // addressNumber: req.body.addressNumber,
+    associationId: req.body.addressNumber,
+    projectId: req.body.projectId,
+    // TO DO amount minus the amount required for the chosen project
   });
   GreenCoin.updateOne({_id: req.params.id}, greenCoin).then(
     () => {
