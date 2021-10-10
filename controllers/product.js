@@ -21,6 +21,7 @@ exports.createProduct = (req, res) => {
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     productModelId: req.body.productModelId,
+    greencoinsvalue: null,
   });
   // TO DO CATCH IF BAD REQUEST
   if (req.files) {
@@ -99,6 +100,7 @@ exports.modifyProduct = (req, res, next) => {
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     productModelId: req.body.productModelId,
+    greencoinsvalue: req.body.greencoinsvalue,
   });
   Product.updateOne({_id: req.params.id}, product).then(
     () => {

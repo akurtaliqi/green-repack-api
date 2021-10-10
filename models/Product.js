@@ -17,7 +17,7 @@ const productSchema = mongoose.Schema({
     sellerId: { type: String, required: true },
     categoryId: { type: String, required: true },
     productStateId: { type: String, required: true },
-    // brandId: { type: String, required: true },
+    greencoinsvalue: { type: Number },
     warehouseId: { type: String },
     images: {
         type: [String],
