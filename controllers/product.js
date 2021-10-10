@@ -91,6 +91,7 @@ exports.modifyProduct = (req, res, next) => {
     createDate: req.body.createDate,
     updateDate: Date.now(),
     sellPrice: req.body.sellPrice,
+    sold: req.body.sold,
     sent: req.body.sent,
     received: req.body.received,
     verified: req.body.verified,
