@@ -1,4 +1,5 @@
-const stripe = Stripe(process.env.END_POINT_SECRET);
+//const stripe = Stripe(process.env.END_POINT_SECRET);
+const stripe = require('stripe')('sk_test_51JfOTNKqXtPaxbjmHLKF5pT44Yp0Yo3kf7fOLM42bv2wMwEdIgodPoeKUpbYv39IVUwjjrAQEmDmVc22aHb8MMAQ00qE7RQmhK');
 export {
     getPaymentIntent,
     createProduct,

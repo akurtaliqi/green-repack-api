@@ -15,7 +15,9 @@ exports.signup = (req, res) => {
       });
       buyer
         .save()
-        .then(() => res.status(201).json({ message: "Buyer created" }))
+        .then(() => {
+            return res.status(201).json({ message: "Buyer created" });
+        })
         .catch((error) => res.status(400).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
