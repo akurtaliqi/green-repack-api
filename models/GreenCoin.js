@@ -3,8 +3,6 @@ const uniqueValidator = require('mongoose-unique-validator');
 
 const greenCoinSchema = mongoose.Schema({
   buyerId: { type: String, required: true },
-  associationId: { type: String },
-  projectId: { type: String },
   amount: { type: Number },
 });
 

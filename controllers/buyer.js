@@ -61,3 +61,23 @@ exports.getOneBuyer = (req, res) => {
       });
     });
 };
+
+exports.modifyWallet = (req, res, next) => {
+  const product = new Product({
+    _id: req.params.id,
+    walletgreencoins: req.body.walletgreencoins,
+  });
+  Product.updateOne({_id: req.params.id}, product).then(
+    () => {
+      res.status(201).json({
+        message: 'wallet updated'
+      });
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+};
