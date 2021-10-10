@@ -16,7 +16,7 @@ const sellOfferRoutes = require("./routes/sellOffer");
 const sellOfferSellerRoutes = require("./routes/sellOfferSeller");
 const association = require("./routes/association");
 const associationProject = require("./routes/associationProject");
-const greenCoin = require("./routes/greencoin");
+const wallet = require("./routes/wallet");
 const order = require("./routes/order");
 
 const normalizePort = (val) => {
@@ -136,7 +136,7 @@ app.use("/api/productBrand", productBrandRoutes);
 app.use("/api/sellOffer", sellOfferRoutes);
 app.use("/api/selloffer/seller", sellOfferSellerRoutes);
 
-app.use("/api/greencoin", greenCoin);
+app.use("/api/wallet", wallet);
 app.use("/api/order", order);
 app.use("/api/associationProject", associationProject);
 
