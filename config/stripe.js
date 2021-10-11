@@ -73,9 +73,9 @@ const createPrice = async(req,res,next) => {
 
 };
 
-export {
+/*export {
     getPaymentIntent,
     createProduct,
     createCheckoutSession,
     createPrice
-};
+};*/
