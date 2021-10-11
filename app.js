@@ -140,6 +140,7 @@ app.use("/api/selloffer/seller", sellOfferSellerRoutes);
 app.use("/api/wallet", walletRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/associationProject", associationProjectRoutes);
+app.use("/api/association/auth", associationRoutes);
 
 app.use("/webhook", stripeRoutes);
 
