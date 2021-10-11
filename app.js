@@ -124,7 +124,7 @@ app.use(express.json());
 app.use("/api/buyer/auth", buyerRoutes);
 app.use("/api/seller/auth", sellerRoutes);
 app.use("/api/admin/auth", adminRoutes);
-app.use("/api/association/auth", association);
+app.use("/api/association/auth", associationRoutes);
 
 app.use("/api/product", productRoutes);
 app.use("/api/productCategory", productCategoryRoutes);
@@ -140,7 +140,7 @@ app.use("/api/selloffer/seller", sellOfferSellerRoutes);
 app.use("/api/wallet", walletRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/associationProject", associationProjectRoutes);
-app.use("/api/association/auth", associationRoutes);
+
 
 app.use("/webhook", stripeRoutes);
 
