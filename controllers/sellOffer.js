@@ -10,6 +10,7 @@ exports.createSellOffer = (req, res, next) => {
     // couponPath: "",
     couponDownloaded: false,
     createDate: Date.now(),
+    paid: false,
   });
   sellOffer.save().then(
     (sellOfferId) => {
@@ -50,6 +51,7 @@ exports.modifySellOffer = (req, res, next) => {
     sellOfferAccept: req.body.sellOfferAccept,
     productId: req.body.productId,
     sellerId: req.body.sellerId,
+    paid: req.body.paid,
   });
   SellOffer.updateOne({_id: req.params.id}, sellOffer).then(
     () => {

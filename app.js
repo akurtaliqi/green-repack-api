@@ -14,10 +14,11 @@ const productModelRoutes = require("./routes/productModel");
 const productBrandRoutes = require("./routes/productBrand");
 const sellOfferRoutes = require("./routes/sellOffer");
 const sellOfferSellerRoutes = require("./routes/sellOfferSeller");
-const association = require("./routes/association");
-const associationProject = require("./routes/associationProject");
-const wallet = require("./routes/wallet");
-const order = require("./routes/order");
+const associationRoutes = require("./routes/association");
+const associationProjectRoutes = require("./routes/associationProject");
+const walletRoutes = require("./routes/wallet");
+const orderRoutes = require("./routes/order");
+const stripeRoutes = require("./routes/stripe");
 
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
@@ -63,7 +64,7 @@ const endpointSecret = END_POINT_SECRET;
 
 const YOUR_DOMAIN = 'http://localhost:8081';
 
-app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+/*app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
   const sig = request.headers['stripe-signature'];
   console.log(sig)
   console.log(endpointSecret)
@@ -111,7 +112,7 @@ app.post('/webhook/createprice', express.raw({type: 'application/json'}), (reque
       },
     }],
   });
-});
+});*/
 
 app.use(express.static(__dirname + "/uploads"));
 app.use("/uploads", express.static("uploads"));
@@ -136,10 +137,11 @@ app.use("/api/productBrand", productBrandRoutes);
 app.use("/api/sellOffer", sellOfferRoutes);
 app.use("/api/selloffer/seller", sellOfferSellerRoutes);
 
-app.use("/api/wallet", wallet);
-app.use("/api/order", order);
-app.use("/api/associationProject", associationProject);
+app.use("/api/wallet", walletRoutes);
+app.use("/api/order", orderRoutes);
+app.use("/api/associationProject", associationProjectRoutes);
 
+app.use("/webhook", stripeRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${port}`);

@@ -9,6 +9,7 @@ const sellOfferSchema = mongoose.Schema({
     sellerId: { type: String, required: true },
     couponPath: { type: String, required: false },
     couponDownloaded: { type: Boolean, required: true },
+    paid: { type: Boolean, required: true },
     // bon de commande
     // updateDate: { type: Date },
 });
