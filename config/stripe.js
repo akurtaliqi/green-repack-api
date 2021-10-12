@@ -1,6 +1,5 @@
 //const stripe = Stripe(process.env.END_POINT_SECRET);
 const stripe = require('stripe')('sk_test_51JfOTNKqXtPaxbjmHLKF5pT44Yp0Yo3kf7fOLM42bv2wMwEdIgodPoeKUpbYv39IVUwjjrAQEmDmVc22aHb8MMAQ00qE7RQmhK');
-
 const getPaymentIntent = async (req,res,next) => {
     try {
         const id = req.params.id;
@@ -71,11 +70,4 @@ const createPrice = async(req,res,next) => {
         res.status(400).send(error.message)
     }
 
-};
-
-export {
-    getPaymentIntent,
-    createProduct,
-    createCheckoutSession,
-    createPrice
 };
