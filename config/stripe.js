@@ -1,7 +1,7 @@
 //const stripe = Stripe(process.env.END_POINT_SECRET);
 const stripe = require('stripe')('sk_test_51JfOTNKqXtPaxbjmHLKF5pT44Yp0Yo3kf7fOLM42bv2wMwEdIgodPoeKUpbYv39IVUwjjrAQEmDmVc22aHb8MMAQ00qE7RQmhK');
 
-exports.getPaymentIntent = async (req,res,next) => {
+const getPaymentIntent = async (req,res,next) => {
     try {
         const id = req.params.id;
         const paymentIntent = await stripe.paymentIntents.create({
@@ -15,7 +15,7 @@ exports.getPaymentIntent = async (req,res,next) => {
     }
 };
 
-exports.createCheckoutSession = async(req,res,next) => {
+const createCheckoutSession = async(req,res,next) => {
     try{
         console.log("price id :" + req.query.id);
         const session = await stripe.checkout.sessions.create({
@@ -45,7 +45,7 @@ exports.createCheckoutSession = async(req,res,next) => {
 
 };
 
-exports.createProduct = async(req,res,next) => {
+const createProduct = async(req,res,next) => {
     try{
         const product = await stripe.products.create({
             name: req.query.name,
@@ -59,7 +59,7 @@ exports.createProduct = async(req,res,next) => {
 
 };
 
-exports.createPrice = async(req,res,next) => {
+const createPrice = async(req,res,next) => {
     try {
         const price = await stripe.prices.create({
             product: req.query.id,
@@ -73,9 +73,9 @@ exports.createPrice = async(req,res,next) => {
 
 };
 
-/*export {
+export {
     getPaymentIntent,
     createProduct,
     createCheckoutSession,
     createPrice
-};*/
+};

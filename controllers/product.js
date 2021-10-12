@@ -21,7 +21,7 @@ exports.createProduct = (req, res) => {
     sellerId: req.body.sellerId,
     categoryId: req.body.categoryId,
     productModelId: req.body.productModelId,
-    greencoinsvalue: null,
+    greencoinsvalue: 0,
   });
   // TO DO CATCH IF BAD REQUEST
   if (req.files) {
